@@ -6,6 +6,4 @@ export const openApp = async (data) => {
     page.insertAdjacentHTML('beforeend', html);
 
 
-
-    console.log('o nome do app clicado é: ', data)
 }
