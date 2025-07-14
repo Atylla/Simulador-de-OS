@@ -1,23 +1,54 @@
 .draggable-window {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 300px;
-  background-color: #333;
-  color: white;
-  border-radius: 6px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-  overflow: hidden;
-  user-select: none;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 300px;
+    background-color: #333;
+    color: white;
+    border-radius: 6px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    user-select: none;
 }
 
 .window-header {
-  background-color: #444;
-  padding: 10px;
-  cursor: grab;
-  font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #444;
+    padding: 10px;
+    font-weight: bold;
+}
+.window-header p {
+    margin: 0;
+    padding: 0;
 }
 
 .window-body {
-  padding: 15px;
+    padding: 15px;
+}
+
+.wh-right {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+.wh-right div {
+    font-size: 15px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+.wh-right div:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.draggable-window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
 }
