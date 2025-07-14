@@ -1,0 +1,17 @@
+#app-lixeira {
+    display: flex;
+    width: 45px;
+    height: 45px;   
+    align-content: center;
+    border-radius: 50%;
+    background-color: #555;
+}
+#icone-lixeira {
+    align-self: center;
+    margin: auto;
+    color: #fff;
+    font-size: 25px;
+}
+#app-lixeira:hover {
+    background-color: #666;
+}

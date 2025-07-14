@@ -1,0 +1,130 @@
+#bottom-bar {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    justify-content: space-between;
+    height: 35px;
+    background-color: #555;
+}
+
+.bb-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.bb-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.bb-date {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    align-items: center;
+    width: 80px;
+    color: #fff;
+}
+
+.bb-date:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#eimeOS {
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    width: 35px;
+    height: 100%;
+    padding: 0;
+    font-size: 15px;
+    color: #fff;
+}
+
+#eimeOS:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.volume {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    width: 35px;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    color: #fff;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+
+.volume ion-icon {
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    align-self: center;
+}
+
+.volume:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#volume-popup {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease-in-out;
+}
+
+#volume-popup.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#volume-slider {
+    width: 100px;
+    height: 6px;
+    appearance: none;
+    background: #ccc;
+    border-radius: 3px;
+    outline: none;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#volume-slider::-webkit-slider-thumb:hover {
+    background: #666;
+}
+
+.volume-wrapper {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
