@@ -1,4 +1,3 @@
-import { dragAndDrop } from "./drag-drop.js";
 import { winControl } from "./window-control.js";
 
 export const openApp = async (data) => {
@@ -9,7 +8,6 @@ export const openApp = async (data) => {
     page.insertAdjacentHTML('beforeend', html);
 
     winControl();
-    dragAndDrop();
 
 
 }

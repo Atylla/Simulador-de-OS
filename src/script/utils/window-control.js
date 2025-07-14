@@ -1,11 +1,13 @@
+import { createTaskbar } from "../components/bottom-bar.js";
+import { dragAndDrop } from "./drag-drop.js";
+import { getZIndex } from "./window-state.js";
+
 export const winControl = () => {
     const windows = document.querySelectorAll('.draggable-window');
-    let zIndexCounter = 1000;
 
     windows.forEach((win) => {
         win.addEventListener('mousedown', () => {
-            zIndexCounter++;
-            win.style.zIndex = zIndexCounter;
+            win.style.zIndex = getZIndex();
         });
 
         const header = win.querySelector('.window-header');
@@ -15,7 +17,8 @@ export const winControl = () => {
         const body = win.querySelector('.window-body');
 
         btnMinimize?.addEventListener('click', () => {
-            body.style.display = body.style.display === 'none' ? 'block' : 'none';
+            win.style.display = 'none';
+            createTaskbar(win);
         });
 
         btnMaximize?.addEventListener('click', () => {
@@ -26,7 +29,10 @@ export const winControl = () => {
             win.remove()
         })
 
+        dragAndDrop();
+
     });
 
     
+
 }

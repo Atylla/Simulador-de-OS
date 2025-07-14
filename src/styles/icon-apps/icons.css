@@ -1,4 +1,4 @@
-#app-lixeira {
+.app {
     display: flex;
     width: 45px;
     height: 45px;   
@@ -6,12 +6,12 @@
     border-radius: 50%;
     background-color: #555;
 }
-#icone-lixeira {
+.icone {
     align-self: center;
     margin: auto;
     color: #fff;
     font-size: 25px;
 }
-#app-lixeira:hover {
+.app:hover {
     background-color: #666;
 }

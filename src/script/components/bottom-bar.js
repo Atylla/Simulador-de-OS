@@ -1,3 +1,5 @@
+import { getZIndex } from "../utils/window-state.js";
+
 export const compBar = async () => {
     const res = await fetch('/src/components/bottom-bar.html');
     const html = await res.text();
@@ -63,4 +65,32 @@ const volumeBar = () => {
             popup.classList.remove('show');
         }
     });
+}
+
+export const createTaskbar = (win) => {
+    const bottomBar = document.querySelector('.bb-left');
+
+    // Gera um ID único ou usa um existente
+    const winId = win.getAttribute('id') || `win-${Date.now()}`;
+    win.setAttribute('id', winId); // garante que tenha um ID
+
+    // Cria o botão
+    const btn = document.createElement('button');
+    btn.textContent = win.querySelector('.window-header p')?.textContent || 'App';
+    btn.classList.add('taskbar-app');
+    btn.setAttribute('data-window-id', winId);
+
+    // Ao clicar no botão, traz a janela de volta
+    btn.addEventListener('click', () => {
+        const targetWindow = document.getElementById(winId);
+        targetWindow.style.display = 'block';
+
+        // Atualiza z-index pra trazer pra frente
+        targetWindow.style.zIndex = getZIndex();
+
+        // Remove botão da taskbar (ou comenta se quiser manter)
+        btn.remove();
+    });
+
+    bottomBar.appendChild(btn);
 }
