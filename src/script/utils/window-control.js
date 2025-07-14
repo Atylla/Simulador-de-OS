@@ -29,7 +29,7 @@ export const winControl = () => {
             win.remove()
         })
 
-        dragAndDrop();
+        dragAndDrop(win);
 
     });
 

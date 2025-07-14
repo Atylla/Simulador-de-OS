@@ -69,10 +69,11 @@ const volumeBar = () => {
 
 export const createTaskbar = (win) => {
     const bottomBar = document.querySelector('.bb-left');
+    const winId = win.getAttribute('id');
 
-    // Gera um ID único ou usa um existente
-    const winId = win.getAttribute('id') || `win-${Date.now()}`;
-    win.setAttribute('id', winId); // garante que tenha um ID
+    if(bottomBar.querySelector(`[data-window-id="${winId}"]`)) {
+        return;
+    }
 
     // Cria o botão
     const btn = document.createElement('button');

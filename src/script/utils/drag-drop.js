@@ -1,6 +1,10 @@
-export const dragAndDrop = () => {
-    const windowElement = document.getElementById('app-window');
-    const header = document.getElementById('drag-header');
+export const dragAndDrop = (windowElement) => {
+    const header = windowElement.querySelector('.drag-header');
+
+    if (!header) {
+        console.warn("Janela sem '.drag-header':", windowElement);
+        return;
+    }
 
     let offsetX = 0;
     let offsetY = 0;
