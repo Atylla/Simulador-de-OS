@@ -17,5 +17,4 @@ export const openApp = async (data) => {
 
     winControl();
 
-
 }

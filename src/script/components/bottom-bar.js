@@ -71,6 +71,8 @@ export const createTaskbar = (win) => {
     const bottomBar = document.querySelector('.bb-left');
     const winId = win.getAttribute('id');
 
+    if (!bottomBar || !winId) return;
+
     if(bottomBar.querySelector(`[data-window-id="${winId}"]`)) {
         return;
     }
@@ -84,14 +86,28 @@ export const createTaskbar = (win) => {
     // Ao clicar no botão, traz a janela de volta
     btn.addEventListener('click', () => {
         const targetWindow = document.getElementById(winId);
-        targetWindow.style.display = 'block';
+        if (!targetWindow) return;
 
-        // Atualiza z-index pra trazer pra frente
-        targetWindow.style.zIndex = getZIndex();
 
-        // Remove botão da taskbar (ou comenta se quiser manter)
-        btn.remove();
+        if (targetWindow.style.display === 'none') {
+            targetWindow.style.display = 'block';
+        } else {
+            targetWindow.style.display = 'none';
+        }
+
+        // Sempre traz pra frente se estiver visível
+        if (targetWindow.style.display === 'block') {
+            targetWindow.style.zIndex = getZIndex();
+        }
+
     });
 
     bottomBar.appendChild(btn);
 }
+
+export const removeTaskbar = (winId) => {
+    const btn = document.querySelector(`.taskbar-app[data-window-id="${winId}"]`);
+    if (btn) {
+        btn.remove();
+    }
+};

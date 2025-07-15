@@ -52,3 +52,72 @@
     height: 100vh !important;
     border-radius: 0 !important;
 }
+
+
+
+
+.resizer {
+    position: absolute;
+    background: transparent;
+    z-index: 10000;
+}
+
+/* bordas finas */
+.resizer-top,
+.resizer-bottom {
+    height: 5px;
+    left: 0;
+    right: 0;
+    cursor: ns-resize;
+}
+.resizer-top {
+    top: 0;
+}
+.resizer-bottom {
+    bottom: 0;
+}
+
+.resizer-left,
+.resizer-right {
+    width: 5px;
+    top: 0;
+    bottom: 0;
+    cursor: ew-resize;
+}
+.resizer-left {
+    left: 0;
+}
+.resizer-right {
+    right: 0;
+}
+
+/* cantos - quadradinhos maiores pra facilitar */
+.resizer-top-left,
+.resizer-top-right,
+.resizer-bottom-left,
+.resizer-bottom-right {
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    z-index: 10001;
+}
+.resizer-top-left {
+    top: 0;
+    left: 0;
+    cursor: nwse-resize;
+}
+.resizer-top-right {
+    top: 0;
+    right: 0;
+    cursor: nesw-resize;
+}
+.resizer-bottom-left {
+    bottom: 0;
+    left: 0;
+    cursor: nesw-resize;
+}
+.resizer-bottom-right {
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
+}
