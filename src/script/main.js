@@ -1,4 +1,5 @@
 import { compBar } from "./components/bottom-bar.js";
+import { rightClick } from "./mouse/click-right.js";
 import { initDesktopDrag, positionInitialApps } from "./utils/drag-drop-app.js";
 import { openApp } from "./utils/open-app.js";
 
@@ -6,6 +7,7 @@ import { openApp } from "./utils/open-app.js";
     await compBar();
     initDesktopDrag();
     positionInitialApps();
+    rightClick();
 
     document.querySelectorAll('.app').forEach((el) => {
         el.addEventListener('dblclick', (e) => {

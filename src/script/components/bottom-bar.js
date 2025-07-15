@@ -27,7 +27,7 @@ const nowHours = () => {
     horas = horas.toString().padStart(2, '0');
     minutos = minutos.toString().padStart(2, '0');
 
-    const dataFormatada = `${dia}:${mes}:${ano}`;
+    const dataFormatada = `${dia}/${mes}/${ano}`;
     const horaFormatada = `${horas}:${minutos}`;
 
     document.querySelector('#date').textContent = dataFormatada;

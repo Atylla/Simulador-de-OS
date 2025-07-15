@@ -1,6 +1,7 @@
 @import '/src/styles/components/bottom-bar.css';
 @import '/src/styles/components/paginas.css';
 @import '/src/styles/icon-apps/icons.css';
+@import '/src/styles/components/click-right.css';
 
 html,
 body {
