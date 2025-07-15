@@ -62,7 +62,6 @@
     z-index: 10000;
 }
 
-/* bordas finas */
 .resizer-top,
 .resizer-bottom {
     height: 5px;
@@ -91,7 +90,7 @@
     right: 0;
 }
 
-/* cantos - quadradinhos maiores pra facilitar */
+
 .resizer-top-left,
 .resizer-top-right,
 .resizer-bottom-left,

@@ -41,7 +41,7 @@ const volumeBar = () => {
     const icon = document.querySelector('#volume-icon');
 
     volumeBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Impede que o clique feche logo em seguida
+        e.stopPropagation();
         popup.classList.toggle('show');
     });
 
@@ -77,13 +77,11 @@ export const createTaskbar = (win) => {
         return;
     }
 
-    // Cria o botão
     const btn = document.createElement('button');
     btn.textContent = win.querySelector('.window-header p')?.textContent || 'App';
     btn.classList.add('taskbar-app');
     btn.setAttribute('data-window-id', winId);
 
-    // Ao clicar no botão, traz a janela de volta
     btn.addEventListener('click', () => {
         const targetWindow = document.getElementById(winId);
         if (!targetWindow) return;
@@ -95,7 +93,6 @@ export const createTaskbar = (win) => {
             targetWindow.style.display = 'none';
         }
 
-        // Sempre traz pra frente se estiver visível
         if (targetWindow.style.display === 'block') {
             targetWindow.style.zIndex = getZIndex();
         }

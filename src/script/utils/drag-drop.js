@@ -13,16 +13,15 @@ export const dragAndDrop = (windowElement) => {
     header.addEventListener('mousedown', (e) => {
         isDragging = true;
 
-        // Distância entre o clique e a borda da janela
         offsetX = e.clientX - windowElement.offsetLeft;
         offsetY = e.clientY - windowElement.offsetTop;
 
-        document.body.style.userSelect = "none"; // Evita seleção acidental
+        document.body.style.userSelect = "none"; 
     });
 
     document.addEventListener('mouseup', () => {
         isDragging = false;
-        document.body.style.userSelect = ""; // Libera seleção novamente
+        document.body.style.userSelect = ""; 
     });
 
     document.addEventListener('mousemove', (e) => {

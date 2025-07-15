@@ -54,7 +54,6 @@ export const resizeWindow = (windowElement, minWidth = 200, minHeight = 150) => 
             startX = e.clientX;
             startY = e.clientY;
 
-            // Pegando valores atuais da janela
             const rect = windowElement.getBoundingClientRect();
             startWidth = rect.width;
             startHeight = rect.height;
@@ -85,7 +84,6 @@ export const resizeWindow = (windowElement, minWidth = 200, minHeight = 150) => 
                     newTop = startTop + dy;
                 }
 
-                // Aplicando o novo tamanho e posição
                 windowElement.style.width = `${newWidth}px`;
                 windowElement.style.height = `${newHeight}px`;
                 windowElement.style.left = `${newLeft}px`;
