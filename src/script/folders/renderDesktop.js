@@ -49,3 +49,51 @@ export const renderDesktop = () => {
     addDesktopEventListeners();
     initDesktopDrag();
 }
+
+export const renderFolderContent = (pathArray, container) => {
+  const folder = getFolderByPath(pathArray);
+  if(!folder) return;
+
+  container.innerHTML = '';
+
+  for (const name in folder.children) {
+    const item = folder.children[name];
+
+    if(item.type === "folder") {
+      const icon = document.createElement("div");
+      icon.classList.add("folder", "app");
+      icon.style.position = "relative";
+
+      const iconElem = document.createElement("ion-icon");
+      iconElem.setAttribute("name", "folder");
+      iconElem.classList.add("icone");
+      icon.appendChild(iconElem);
+
+      const label = document.createElement("p");
+      label.textContent = item.name;
+      icon.appendChild(label);
+
+      icon.addEventListener("dblclick", () => {
+        openFolderWindow([...pathArray, item.name]);
+      });
+
+      container.appendChild(icon);
+    }
+  }
+}
+
+export const renderLeftSidebar = (folder, pathArray, container) => {
+  container.innerHTML = '';
+
+  for (const name in folder.children) {
+    const item = folder.children[name];
+    if (item.type === 'folder') {
+      const li = document.createElement('li');
+      li.innerHTML = `<ion-icon name="folder"></ion-icon> ${item.name}`;
+      li.addEventListener('click', () => {
+        openFolderWindow([...pathArray, item.name]);
+      });
+      container.appendChild(li);
+    }
+  }
+}

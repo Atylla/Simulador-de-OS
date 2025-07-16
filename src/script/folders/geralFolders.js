@@ -1,6 +1,7 @@
 import { winControl } from "../utils/window-control.js";
-import { getFolderByPath } from "./folderStorage.js";
+import { createFolder, getFolderByPath } from "./folderStorage.js";
 import { getZIndex } from "../utils/window-state.js";
+import { renderFolderContent, renderLeftSidebar } from "./renderDesktop.js";
 
 export function openFolderWindow(pathArray) {
   const folder = getFolderByPath(pathArray);
@@ -50,7 +51,12 @@ export function openFolderWindow(pathArray) {
           </div>
         </div>
         <div class="right-panel">
-          <p>Conteúdo da pasta <strong>${folder.name}</strong> ainda será renderizado aqui.</p>
+          <div class="folder-toolbar">
+            <button class="new-folder-btn">Nova Pasta</button>
+          </div>
+          <div class="folder-content">
+            <!-- conteúdo vai ser renderizado aqui -->
+          </div>
         </div>
     </div>
   `;
@@ -58,4 +64,20 @@ export function openFolderWindow(pathArray) {
   document.querySelector("#content-wrap").appendChild(windowDiv);
 
   winControl(windowDiv);
+
+  const folderContentDiv = windowDiv.querySelector('.folder-content');
+  renderFolderContent(pathArray, folderContentDiv);
+
+  windowDiv.querySelector('.new-folder-btn').addEventListener('click', () =>{
+    const nome = prompt('Nome da nova pasta:');
+    if (nome) {
+      createFolder(pathArray, nome);
+      const updatedFolder = getFolderByPath(pathArray);
+      renderFolderContent(pathArray, folderContentDiv);
+      renderLeftSidebar(updatedFolder, pathArray, leftBarList);
+    }
+  })
+
+  const leftBarList = windowDiv.querySelector('.left-bar .section ul.folder-list');
+  renderLeftSidebar(folder, pathArray, leftBarList);
 }
