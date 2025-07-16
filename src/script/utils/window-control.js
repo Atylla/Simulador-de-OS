@@ -2,40 +2,38 @@ import { createTaskbar, removeTaskbar } from "../components/bottom-bar.js";
 import { dragAndDrop } from "./drag-drop.js";
 import { getZIndex } from "./window-state.js";
 
-export const winControl = () => {
-    const windows = document.querySelectorAll('.draggable-window');
+export const winControl = (win) => {
+    if (!win) return;
 
-    windows.forEach((win) => {
-        win.addEventListener('mousedown', () => {
-            win.style.zIndex = getZIndex();
-        });
-
-        createTaskbar(win);
-
-        const header = win.querySelector('.window-header');
-        const btnMinimize = header.querySelector('[name="remove-circle"]');
-        const btnMaximize = header.querySelector('[name="square-outline"]');
-        const btnClose = header.querySelector('[name="close-circle"]');
-
-        btnMinimize?.addEventListener('click', () => {
-            win.style.display = 'none';
-        });
-
-        btnMaximize?.addEventListener('click', () => {
-            win.classList.toggle('maximized');
-        });
-
-        btnClose?.addEventListener('click', () => {
-            const winId = win.getAttribute('id');
-            win.remove()
-            removeTaskbar(winId);
-        })
-
-        
-        dragAndDrop(win);
-        resizeWindow(win);
+    win.addEventListener('mousedown', () => {
+        win.style.zIndex = getZIndex();
     });
-}
+
+    createTaskbar(win);
+
+    const header = win.querySelector('.window-header');
+    const btnMinimize = header.querySelector('[name="remove-circle"]');
+    const btnMaximize = header.querySelector('[name="square-outline"]');
+    const btnClose = header.querySelector('[name="close-circle"]');
+
+    btnMinimize?.addEventListener('click', () => {
+        win.style.display = 'none';
+    });
+
+    btnMaximize?.addEventListener('click', () => {
+        win.classList.toggle('maximized');
+    });
+
+    btnClose?.addEventListener('click', () => {
+        const winId = win.getAttribute('id');
+        win.remove();
+        removeTaskbar(winId);
+    });
+
+    dragAndDrop(win);
+    resizeWindow(win);
+};
+
 
 export const resizeWindow = (windowElement, minWidth = 200, minHeight = 150) => {
 

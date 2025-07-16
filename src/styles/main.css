@@ -2,6 +2,7 @@
 @import '/src/styles/components/paginas.css';
 @import '/src/styles/icon-apps/icons.css';
 @import '/src/styles/components/click-right.css';
+@import '/src/styles/components/left-bar.css';
 
 html,
 body {

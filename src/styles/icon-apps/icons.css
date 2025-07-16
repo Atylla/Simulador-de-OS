@@ -1,17 +1,37 @@
-.app {
-    display: flex;
-    width: 45px;
-    height: 45px;   
-    align-content: center;
-    border-radius: 50%;
-    background-color: #555;
+.app, .folder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 70px;
+  border-radius: 10px;
+  background-color: #555;
+  padding: 5px 0;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+
 }
-.icone {
-    align-self: center;
-    margin: auto;
-    color: #fff;
-    font-size: 25px;
+
+.folder:hover, .app:hover {
+  background-color: #666;
 }
-.app:hover {
-    background-color: #666;
+
+.folder .icone, .app .icone {
+  color: #fff;
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.folder p, .app p {
+  font-size: 12px;
+  color: #eee;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }

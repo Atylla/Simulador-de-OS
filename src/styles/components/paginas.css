@@ -26,6 +26,8 @@
 
 .window-body {
     padding: 15px;
+    display: flex;
+    height: 100%;
 }
 
 .wh-right {

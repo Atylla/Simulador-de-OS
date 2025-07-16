@@ -1,0 +1,51 @@
+.left-bar {
+    margin-left: -15px;
+    margin-top: -15px;
+    width: 220px;
+    background-color: #1e1e1e;
+  color: #ccc;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.section h4 {
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.folder-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.folder-list li {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.folder-list li:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.right-panel {
+  flex: 1;
+  padding: 1rem;
+  background-color: #f4f4f4;
+  overflow: auto;
+}
