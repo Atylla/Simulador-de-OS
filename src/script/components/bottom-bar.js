@@ -1,3 +1,4 @@
+import { openFolderWindow } from "../folders/geralFolders.js";
 import { getZIndex } from "../utils/window-state.js";
 
 export const compBar = async () => {
@@ -11,6 +12,7 @@ export const compBar = async () => {
     setInterval(nowHours, 1000);
 
     volumeBar();
+    btnArquivos();
 
 }
 
@@ -65,6 +67,13 @@ const volumeBar = () => {
             popup.classList.remove('show');
         }
     });
+}
+
+const btnArquivos = () => {
+    document.querySelector('#arquivos').addEventListener('click', () => {
+        console.log("Abrindo a pasta raiz!");
+        openFolderWindow([]);
+    })
 }
 
 export const createTaskbar = (win) => {
