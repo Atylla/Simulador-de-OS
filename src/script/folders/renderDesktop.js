@@ -28,6 +28,7 @@ export const renderDesktop = () => {
             const icon = document.createElement("div");
             icon.classList.add("folder");
             icon.classList.add("app");
+            icon.setAttribute("data-folder-path", ["Área de Trabalho", item.name].join("/"));
 
             const iconElem = document.createElement("ion-icon");
             iconElem.setAttribute("name", "folder");
@@ -61,6 +62,7 @@ export const renderFolderContent = (pathArray, container, onNavigate) => {
     if (item.type === "folder") {
       const icon = document.createElement("div");
       icon.classList.add("folder", "app");
+      icon.setAttribute("data-folder-path", [...pathArray, name].join("/"));
 
       const iconElem = document.createElement("ion-icon");
       iconElem.setAttribute("name", "folder");

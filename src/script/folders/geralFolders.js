@@ -55,6 +55,8 @@ export function openFolderWindow(pathArray) {
   const folderContentDiv = windowDiv.querySelector('.folder-content');
   const leftBarList = windowDiv.querySelector('.folder-list');
 
+ 
+
   function updateWindowContent(path) {
     const folder = getFolderByPath(path);
     if (!folder) return;
@@ -85,6 +87,9 @@ export function openFolderWindow(pathArray) {
       updateWindowContent(currentPath);
     }
   });
+
+  windowDiv.updateContent = updateWindowContent;
+  windowDiv.getCurrentPath = () => folderHistory[currentIndex];
 
   updateWindowContent(pathArray);
 }

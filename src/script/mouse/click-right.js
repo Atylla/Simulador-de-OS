@@ -1,14 +1,47 @@
-import { createFolder } from "../folders/folderStorage.js";
-import { renderDesktop } from "../folders/renderDesktop.js";
+import { createFolder, deleteFolder, getFolderByPath } from "../folders/folderStorage.js";
+import { renderDesktop, renderFolderContent, renderLeftSidebar } from "../folders/renderDesktop.js";
 import { positionInitialApps } from "../utils/drag-drop-app.js";
 
+let clickedFolderName = null;
+let currentFolderPath = null;
+let currentContentContainer = null;
+let currentSidebarContainer = null;
 
 export function rightClick() {
     const desktop = document.querySelector("#content-wrap");
     const contextMenu = document.querySelector("#custom-context-menu");
+    const deleteOption = document.querySelector("#delete-folder");
 
     desktop.addEventListener("contextmenu", (e) => {
         e.preventDefault();
+
+        const appEl = e.target.closest(".folder.app");
+
+        if (appEl) {
+            clickedFolderName = appEl.querySelector("p").textContent;
+            const fullPath = appEl.getAttribute("data-folder-path");
+            const windowEl = appEl.closest(".draggable-window");
+
+            if (fullPath) {
+                currentFolderPath = fullPath.split("/");
+            }
+
+            if (windowEl) {
+                currentContentContainer = windowEl.querySelector(".folder-content");
+                currentSidebarContainer = windowEl.querySelector(".folder-list");
+                currentFolderPath = windowEl.getCurrentPath?.();
+                windowEl.updateContent?.(currentFolderPath);
+            }
+
+            deleteOption.style.display = "block";
+        } else {
+            clickedFolderName = null;
+            currentFolderPath = null;
+            currentContentContainer = null;
+            currentSidebarContainer = null;
+            deleteOption.style.display = "none";
+        }
+
         contextMenu.style.left = `${e.clientX}px`;
         contextMenu.style.top = `${e.clientY}px`;
         contextMenu.style.display = "block";
@@ -22,9 +55,30 @@ export function rightClick() {
         const nome = prompt("Nome da nova pasta:");
         if (nome) {
             createFolder(["Área de Trabalho"], nome);
-            renderDesktop(); // atualiza visualmente
+            renderDesktop();
             positionInitialApps();
         }
         contextMenu.style.display = "none";
+    });
+
+    // **Aqui que rola o delete!**
+    deleteOption.addEventListener("click", () => {
+        if (clickedFolderName && currentFolderPath) {
+            const confirmDelete = confirm(`Deseja excluir a pasta "${clickedFolderName}"?`);
+            if (confirmDelete) {
+                deleteFolder(currentFolderPath, clickedFolderName);
+
+                // Atualiza tanto o conteúdo principal quanto a sidebar
+                if (currentContentContainer && currentSidebarContainer) {
+                    renderFolderContent(currentFolderPath, currentContentContainer, (newPath) => {
+                        // Aqui pode colocar função de navegação se precisar
+                    });
+                    renderLeftSidebar(getFolderByPath(currentFolderPath), currentFolderPath, currentSidebarContainer, (newPath) => {
+                        // Aqui também
+                    });
+                }
+            }
+            contextMenu.style.display = "none";
+        }
     });
 }

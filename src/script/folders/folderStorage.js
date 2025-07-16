@@ -34,10 +34,6 @@ export const getFreshFolderByPath = (pathArray) => {
     return current;
 };
 
-
-
-
-
 export const createFolder = (pathArray, folderName) => {
   const fs = JSON.parse(localStorage.getItem("fileSystem"));
   if (!fs) return;
@@ -69,3 +65,19 @@ export const createFolder = (pathArray, folderName) => {
   localStorage.setItem("fileSystem", JSON.stringify(fs));
 }
 
+export const deleteFolder = (pathArray, folderName) => {
+    const fs = JSON.parse(localStorage.getItem("fileSystem"));
+    if (!fs) return;
+
+    let current = fs;
+    for (let i = 0; i < pathArray.length; i++) {
+        const segment = pathArray[i];
+        if (!current.children || !current.children[segment]) return;
+        current = current.children[segment];
+    }
+
+    if (current.children && current.children[folderName]) {
+        delete current.children[folderName];
+        localStorage.setItem("fileSystem", JSON.stringify(fs));
+    }
+};
