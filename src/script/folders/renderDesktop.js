@@ -50,19 +50,17 @@ export const renderDesktop = () => {
     initDesktopDrag();
 }
 
-export const renderFolderContent = (pathArray, container) => {
+export const renderFolderContent = (pathArray, container, onNavigate) => {
   const folder = getFolderByPath(pathArray);
-  if(!folder) return;
+  if (!folder) return;
 
   container.innerHTML = '';
 
   for (const name in folder.children) {
     const item = folder.children[name];
-
-    if(item.type === "folder") {
+    if (item.type === "folder") {
       const icon = document.createElement("div");
       icon.classList.add("folder", "app");
-      icon.style.position = "relative";
 
       const iconElem = document.createElement("ion-icon");
       iconElem.setAttribute("name", "folder");
@@ -74,15 +72,16 @@ export const renderFolderContent = (pathArray, container) => {
       icon.appendChild(label);
 
       icon.addEventListener("dblclick", () => {
-        openFolderWindow([...pathArray, item.name]);
+        onNavigate([...pathArray, item.name]);
       });
 
       container.appendChild(icon);
     }
   }
-}
+};
 
-export const renderLeftSidebar = (folder, pathArray, container) => {
+
+export const renderLeftSidebar = (folder, pathArray, container, onNavigate) => {
   container.innerHTML = '';
 
   for (const name in folder.children) {
@@ -90,10 +89,15 @@ export const renderLeftSidebar = (folder, pathArray, container) => {
     if (item.type === 'folder') {
       const li = document.createElement('li');
       li.innerHTML = `<ion-icon name="folder"></ion-icon> ${item.name}`;
+
       li.addEventListener('click', () => {
-        openFolderWindow([...pathArray, item.name]);
+        onNavigate([...pathArray, item.name]);
       });
+
       container.appendChild(li);
     }
   }
-}
+};
+
+
+
