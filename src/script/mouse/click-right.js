@@ -3,6 +3,7 @@ import { renderDesktop, renderFolderContent, renderLeftSidebar } from "../folder
 import { positionInitialApps } from "../utils/drag-drop-app.js";
 
 let clickedFolderName = null;
+let clickedFolderPath = null; // ← NOVO
 let currentFolderPath = null;
 let currentContentContainer = null;
 let currentSidebarContainer = null;
@@ -18,29 +19,30 @@ export function rightClick() {
         const appEl = e.target.closest(".folder.app");
 
         if (appEl) {
-            clickedFolderName = appEl.querySelector("p").textContent;
-            const fullPath = appEl.getAttribute("data-folder-path");
-            const windowEl = appEl.closest(".draggable-window");
+    clickedFolderName = appEl.querySelector("p").textContent;
+    const fullPath = appEl.getAttribute("data-folder-path");
+    const windowEl = appEl.closest(".draggable-window");
 
-            if (fullPath) {
-                currentFolderPath = fullPath.split("/");
-            }
+    if (fullPath) {
+        clickedFolderPath = fullPath.split("/"); // ← armazena o path completo da pasta clicada
+    }
 
-            if (windowEl) {
-                currentContentContainer = windowEl.querySelector(".folder-content");
-                currentSidebarContainer = windowEl.querySelector(".folder-list");
-                currentFolderPath = windowEl.getCurrentPath?.();
-                windowEl.updateContent?.(currentFolderPath);
-            }
+    if (windowEl) {
+        currentContentContainer = windowEl.querySelector(".folder-content");
+        currentSidebarContainer = windowEl.querySelector(".folder-list");
+        currentFolderPath = windowEl.getCurrentPath?.(); // ← caminho da pasta que está aberta
+    }
 
-            deleteOption.style.display = "block";
-        } else {
-            clickedFolderName = null;
-            currentFolderPath = null;
-            currentContentContainer = null;
-            currentSidebarContainer = null;
-            deleteOption.style.display = "none";
-        }
+    deleteOption.style.display = "block";
+} else {
+    clickedFolderName = null;
+    clickedFolderPath = null;
+    currentFolderPath = null;
+    currentContentContainer = null;
+    currentSidebarContainer = null;
+    deleteOption.style.display = "none";
+}
+
 
         contextMenu.style.left = `${e.clientX}px`;
         contextMenu.style.top = `${e.clientY}px`;
@@ -63,22 +65,34 @@ export function rightClick() {
 
     // **Aqui que rola o delete!**
     deleteOption.addEventListener("click", () => {
-        if (clickedFolderName && currentFolderPath) {
-            const confirmDelete = confirm(`Deseja excluir a pasta "${clickedFolderName}"?`);
-            if (confirmDelete) {
-                deleteFolder(currentFolderPath, clickedFolderName);
+    if (clickedFolderName && clickedFolderPath) {
+        const confirmDelete = confirm(`Deseja excluir a pasta "${clickedFolderName}"?`);
+        if (confirmDelete) {
+            const parentPath = [...clickedFolderPath];
+            parentPath.pop(); // pega o pai da pasta clicada
 
-                // Atualiza tanto o conteúdo principal quanto a sidebar
-                if (currentContentContainer && currentSidebarContainer) {
-                    renderFolderContent(currentFolderPath, currentContentContainer, (newPath) => {
-                        // Aqui pode colocar função de navegação se precisar
-                    });
-                    renderLeftSidebar(getFolderByPath(currentFolderPath), currentFolderPath, currentSidebarContainer, (newPath) => {
-                        // Aqui também
-                    });
-                }
+            deleteFolder(parentPath, clickedFolderName);
+
+            const isDesktop = parentPath.join("/") === "Área de Trabalho";
+
+            if (isDesktop) {
+                renderDesktop();
+                positionInitialApps();
+            } else if (currentContentContainer && currentSidebarContainer) {
+                renderFolderContent(parentPath, currentContentContainer, (newPath) => {});
+                renderLeftSidebar(
+                    getFolderByPath(parentPath),
+                    parentPath,
+                    currentSidebarContainer,
+                    (newPath) => {}
+                );
             }
-            contextMenu.style.display = "none";
         }
-    });
+
+        contextMenu.style.display = "none";
+    }
+});
+
+
+
 }
