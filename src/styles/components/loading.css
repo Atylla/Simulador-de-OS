@@ -1,0 +1,41 @@
+.loading-screen {
+  position: absolute;
+  inset: 0;
+  background-color: #1e1e1e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.loading-animation {
+  display: flex;
+  gap: 8px;
+}
+
+.loading-animation .dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  animation: pulse 1s infinite ease-in-out;
+}
+
+.loading-animation .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-animation .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}

@@ -95,19 +95,20 @@ export function openFolderWindow(pathArray) {
 }
 
 export const openAppWindow = (name, url) => {
-  const safeName = name.toLowerCase().replace(/\s+/g, '-'); // "Evernote Clone" vira "evernote-clone"
-  const existingWindow = document.querySelector(`.app-window[data-app-name="${safeName}"]`);
+  const safeName = name.toLowerCase().replace(/\s+/g, '-');
 
+  const existingWindow = document.querySelector(`.app-window[data-app-name="${safeName}"]`);
   if (existingWindow) {
-    // opcional: trazer janela pro topo (se você tiver um sistema de z-index ou foco)
-    existingWindow.style.zIndex = Date.now(); // ou qualquer lógica de foco
+    existingWindow.style.zIndex = Date.now();
     return;
   }
 
   const windowEl = document.createElement('div');
   windowEl.classList.add('draggable-window', 'app-window');
-  windowEl.setAttribute('data-app-name', safeName); // marca essa janela como única
+  windowEl.setAttribute('data-app-name', safeName);
   windowEl.setAttribute("id", `win-folder-${Date.now()}`);
+
+  const loadingScreen = createLoadingScreen();
 
   windowEl.innerHTML = `
     <div class="window-header drag-header">
@@ -120,9 +121,23 @@ export const openAppWindow = (name, url) => {
         <div><ion-icon name="close-circle" class="btn-close"></ion-icon></div>
       </div>
     </div>
-    <iframe src="${url}" class="app-iframe" style="width:100%;height:100%;border:none;"></iframe>
   `;
 
+  const iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.classList.add('app-iframe');
+  iframe.style.width = '100%';
+  iframe.style.height = '100%';
+  iframe.style.border = 'none';
+
+  windowEl.appendChild(loadingScreen);
+  windowEl.appendChild(iframe);
+
+  iframe.addEventListener('load', () => {
+    loadingScreen.remove();
+  });
+
+  // Botão de fechar (já existia)
   windowEl.querySelector('.btn-close').addEventListener('click', () => {
     windowEl.remove();
   });
@@ -131,6 +146,19 @@ export const openAppWindow = (name, url) => {
   winControl(windowEl);
 };
 
+
+export const createLoadingScreen = () => {
+  const loading = document.createElement('div');
+  loading.classList.add('loading-screen');
+  loading.innerHTML = `
+    <div class="loading-animation">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  `;
+  return loading;
+};
 
 
 
