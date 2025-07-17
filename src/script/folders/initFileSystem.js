@@ -23,6 +23,16 @@ export const initFileSystem = () => {
                             name: "Gerador RPG",
                             type: "app",
                             url: "https://gerador-rpg.vercel.app/"
+                        },
+                        "Terminal RPG": {
+                            name: "Terminal RPG",
+                            type: "app",
+                            url: "https://atylla.github.io/TerminalRPG/"
+                        },
+                        "To do List": {
+                            name: "To-do List",
+                            type: "app",
+                            url: "https://atylla.github.io/Lista-de-Tarefas/"
                         }
                     }
                 },
