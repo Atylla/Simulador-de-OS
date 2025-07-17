@@ -21,8 +21,19 @@ export const winControl = (win) => {
     });
 
     btnMaximize?.addEventListener('click', () => {
-        win.classList.toggle('maximized');
-    });
+    const isMaximized = win.classList.contains('maximized');
+
+    if (!isMaximized) {
+        // SALVA antes de maximizar
+        win.dataset.lastWidth = win.offsetWidth;
+        win.dataset.lastHeight = win.offsetHeight;
+        win.dataset.lastLeft = win.offsetLeft;
+        win.dataset.lastTop = win.offsetTop;
+    }
+
+    win.classList.toggle('maximized');
+});
+
 
     btnClose?.addEventListener('click', () => {
         const winId = win.getAttribute('id');
