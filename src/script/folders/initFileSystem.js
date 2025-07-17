@@ -18,6 +18,11 @@ export const initFileSystem = () => {
                             name: "Atlas Note",
                             type: "app",
                             url: "https://atlas-note-phi.vercel.app/"
+                        },
+                        "Gerador RPG": {
+                            name: "Gerador RPG",
+                            type: "app",
+                            url: "https://gerador-rpg.vercel.app/"
                         }
                     }
                 },
