@@ -13,6 +13,11 @@ export const initFileSystem = () => {
                             name: "Nova Pasta",
                             type: "folder",
                             children: {}
+                        },
+                        "Atlas Note": {
+                            name: "Atlas Note",
+                            type: "app",
+                            url: "https://atlas-note-phi.vercel.app/"
                         }
                     }
                 },

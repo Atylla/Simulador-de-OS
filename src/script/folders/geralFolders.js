@@ -1,7 +1,7 @@
 import { winControl } from "../utils/window-control.js";
 import { createFolder, getFolderByPath } from "./folderStorage.js";
 import { getZIndex } from "../utils/window-state.js";
-import { renderFolderContent, renderLeftSidebar} from "./renderDesktop.js";
+import { renderFolderContent, renderLeftSidebar } from "./renderDesktop.js";
 
 export function openFolderWindow(pathArray) {
   const folderHistory = [pathArray];
@@ -55,7 +55,7 @@ export function openFolderWindow(pathArray) {
   const folderContentDiv = windowDiv.querySelector('.folder-content');
   const leftBarList = windowDiv.querySelector('.folder-list');
 
- 
+
 
   function updateWindowContent(path) {
     const folder = getFolderByPath(path);
@@ -93,6 +93,46 @@ export function openFolderWindow(pathArray) {
 
   updateWindowContent(pathArray);
 }
+
+export const openAppWindow = (name, url) => {
+  const safeName = name.toLowerCase().replace(/\s+/g, '-'); // "Evernote Clone" vira "evernote-clone"
+  const existingWindow = document.querySelector(`.app-window[data-app-name="${safeName}"]`);
+
+  if (existingWindow) {
+    // opcional: trazer janela pro topo (se você tiver um sistema de z-index ou foco)
+    existingWindow.style.zIndex = Date.now(); // ou qualquer lógica de foco
+    return;
+  }
+
+  const windowEl = document.createElement('div');
+  windowEl.classList.add('draggable-window', 'app-window');
+  windowEl.setAttribute('data-app-name', safeName); // marca essa janela como única
+  windowEl.setAttribute("id", `win-folder-${Date.now()}`);
+
+  windowEl.innerHTML = `
+    <div class="window-header drag-header">
+      <div class="wh-left">
+        <p>${name}</p>
+      </div>
+      <div class="wh-right">
+        <div><ion-icon name="remove-circle"></ion-icon></div>
+        <div><ion-icon name="square-outline"></ion-icon></div>
+        <div><ion-icon name="close-circle" class="btn-close"></ion-icon></div>
+      </div>
+    </div>
+    <iframe src="${url}" class="app-iframe" style="width:100%;height:100%;border:none;"></iframe>
+  `;
+
+  windowEl.querySelector('.btn-close').addEventListener('click', () => {
+    windowEl.remove();
+  });
+
+  document.querySelector("#content-wrap").appendChild(windowEl);
+  winControl(windowEl);
+};
+
+
+
 
 
 

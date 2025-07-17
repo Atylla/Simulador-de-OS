@@ -3,6 +3,7 @@
 @import '/src/styles/icon-apps/icons.css';
 @import '/src/styles/components/click-right.css';
 @import '/src/styles/components/left-bar.css';
+@import '/src/styles/components/apps.css';
 
 html,
 body {
