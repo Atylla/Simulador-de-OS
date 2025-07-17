@@ -3,19 +3,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60px;
+  width: 65px;
   height: 70px;
   border-radius: 10px;
-  background-color: #555;
   padding: 5px 0;
   cursor: pointer;
   user-select: none;
   transition: background-color 0.2s ease;
-
 }
 
 .folder:hover, .app:hover {
-  background-color: #666;
+  background-color: #555;
 }
 
 .folder .icone, .app .icone {
@@ -25,7 +23,7 @@
 }
 
 .folder p, .app p {
-  font-size: 12px;
+  font-size: 10px;
   color: #eee;
   text-align: center;
   white-space: nowrap;
