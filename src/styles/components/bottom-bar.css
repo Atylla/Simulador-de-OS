@@ -138,6 +138,8 @@
     border-radius: 4px;
     font-size: 12px;
     cursor: pointer;
+    width: 120px;
+    overflow: hidden;
 }
 
 .taskbar-app:hover {
