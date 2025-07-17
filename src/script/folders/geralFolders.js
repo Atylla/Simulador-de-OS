@@ -108,6 +108,7 @@ export const openAppWindow = (name, url) => {
   windowEl.setAttribute('data-app-name', safeName);
   windowEl.setAttribute("id", `win-folder-${Date.now()}`);
 
+  
   const loadingScreen = createLoadingScreen();
 
   windowEl.innerHTML = `
