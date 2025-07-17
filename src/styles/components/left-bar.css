@@ -46,6 +46,27 @@
 .right-panel {
   flex: 1;
   padding: 1rem;
-  background-color: #f4f4f4;
+  padding: 0 1rem 1rem 1rem;
   overflow: auto;
+}
+.folder-toolbar {
+  display: flex;              
+  justify-content: flex-end; 
+  margin-bottom: 4px;
+  gap: 3px;
+}
+.new-folder-btn,
+.back-folder-btn {
+  padding: 1px;
+  color: #fff;
+  font-size: 15px;
+  border: none;
+  height: 25px;
+  width: 40px;
+  background-color: #555;
+  border-radius: 2px;
+}
+.new-folder-btn:hover,
+.back-folder-btn:hover {
+  background-color: #999;
 }

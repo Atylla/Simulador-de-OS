@@ -41,8 +41,8 @@ export function openFolderWindow(pathArray) {
       </div>
       <div class="right-panel">
         <div class="folder-toolbar">
-          <button class="back-folder-btn">⬅ Voltar</button>
-          <button class="new-folder-btn">Nova Pasta</button>
+          <button class="back-folder-btn"><ion-icon name="arrow-round-back"></ion-icon></button>
+          <button class="new-folder-btn"><ion-icon name="folder-open"></ion-icon><ion-icon name="add"></ion-icon></button>
         </div>
         <div class="folder-content"></div>
       </div>
