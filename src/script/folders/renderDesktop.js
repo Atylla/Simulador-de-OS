@@ -56,7 +56,7 @@ export const renderDesktop = () => {
       icon.setAttribute('data-app-url', item.url);
 
       const iconElem = document.createElement('ion-icon');
-      iconElem.setAttribute('name', 'book');
+      iconElem.setAttribute('name', item.iconName);
       iconElem.classList.add('icone');
       icon.appendChild(iconElem);
 

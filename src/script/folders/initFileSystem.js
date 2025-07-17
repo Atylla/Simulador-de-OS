@@ -17,21 +17,25 @@ export const initFileSystem = () => {
                         "Atlas Note": {
                             name: "Atlas Note",
                             type: "app",
+                            iconName: "book",
                             url: "https://atlas-note-phi.vercel.app/"
                         },
                         "Gerador RPG": {
                             name: "Gerador RPG",
                             type: "app",
+                            iconName: "beer",
                             url: "https://gerador-rpg.vercel.app/"
                         },
                         "Terminal RPG": {
                             name: "Terminal RPG",
                             type: "app",
+                            iconName: "logo-game-controller-b",
                             url: "https://atylla.github.io/TerminalRPG/"
                         },
                         "To do List": {
                             name: "To-do List",
                             type: "app",
+                            iconName: "list",
                             url: "https://atylla.github.io/Lista-de-Tarefas/"
                         }
                     }
