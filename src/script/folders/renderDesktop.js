@@ -90,6 +90,11 @@ export const renderFolderContent = (pathArray, container, onNavigate) => {
       icon.classList.add("folder", "app");
       icon.setAttribute("data-folder-path", [...pathArray, name].join("/"));
 
+      icon.style.position = "static"; // Garante que não fica absolute
+      icon.style.left = "";
+      icon.style.top = "";
+      icon.style.zIndex = "";
+
       const iconElem = document.createElement("ion-icon");
       iconElem.setAttribute("name", "folder");
       iconElem.classList.add("icone");
