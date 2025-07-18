@@ -1,10 +1,33 @@
 <section id="bottom-bar">
     <div class="bb-left">
-        <button class="btn-bar-right" id="eimeOS">Eimi</button>
+        <div class="eimus-wrapper">
+            <button id="btnEimus" class="eimi">
+                Eimi
+            </button>
+            <div class="popup-eimus">
+                <div class="pe-top">
+                    <button>sair</button>
+                </div>
+                <div class="pe-wrapper">
+                    <div class="pe-left">
+                        <div class="pe-left-topbar">
+                            <button>Acessórios</button> <!--calculadora, notas-->
+                            <button>Configurações</button> <!--Aparencia, font-->
+                            <button>Escritório</button> <!--Paint-->
+                            <button>Jogos</button>
+                        </div>
+                    </div>
+                    <div class="pe-right">
+                        <div class="pe-descrições">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <button class="btn-bar-right" id="arquivos">Arq</button>
     </div>
     <div class="bb-right">
-    
+
         <div class="volume-wrapper">
             <button id="volume-btn" class="volume">
                 <ion-icon id="volume-icon" name="volume-low"></ion-icon>
@@ -13,7 +36,7 @@
                 <input type="range" id="volume-slider" min="0" max="100" value="50" />
             </div>
         </div>
-    
+
         <div class="bb-date">
             <span id="clock"></span>
             <span id="date"></span>

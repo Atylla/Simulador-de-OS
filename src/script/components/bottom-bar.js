@@ -11,8 +11,11 @@ export const compBar = async () => {
     nowHours()
     setInterval(nowHours, 1000);
 
-    volumeBar();
-    btnArquivos();
+    requestAnimationFrame(() => {
+        volumeBar();
+        btnEimus();
+        btnArquivos();
+    });
 
 }
 
@@ -68,6 +71,32 @@ const volumeBar = () => {
         }
     });
 }
+
+const btnEimus = () => {
+    const btnEimus = document.querySelector('#btnEimus');
+    const popup = document.querySelector('.popup-eimus');
+
+    if (!popup || !btnEimus) {
+        console.warn("Botão ou popup não encontrados!");
+        return;
+    }
+
+    btnEimus.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        popup.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+        const isClickInsidePopup = popup.contains(e.target);
+        const isClickOnButton = btnEimus.contains(e.target);
+
+        if (popup.classList.contains('show') && !isClickInsidePopup && !isClickOnButton) {
+            popup.classList.remove('show');
+            console.log('removendo show');
+        }
+    });
+};
+
 
 const btnArquivos = () => {
     document.querySelector('#arquivos').addEventListener('click', () => {

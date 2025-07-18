@@ -145,3 +145,124 @@
 .taskbar-app:hover {
     background-color: #888;
 }
+
+
+/*-----------------------*/
+
+.label-bottom-bar {
+    padding: 0;
+    margin: 0;
+}
+
+.btn-eimus-wrapper {
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    width: 35px;
+    height: 100%;
+    padding: 0;
+    font-size: 15px;
+    color: #fff;
+}
+
+.eimi {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    width: 35px;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.eimi:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.eimus-wrapper {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.popup-eimus {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    display: flex;
+    height: 300px;
+    width: 250px;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 6px 6px 0 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease-in-out;
+    
+}
+.popup-eimus.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.pe-top {
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: end;
+    background-color: #555;
+}
+.pe-top button {
+    margin: 0;
+    padding: 3px;
+    height: 25px;
+    border: none;
+    background-color: #666;
+    color: #fff;
+}
+.pe-wrapper {
+    position: absolute;
+    top: 25px; 
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pe-left {
+    width: 50%;
+    border-right: 1px solid #222;
+    height: 270px;
+}
+.pe-left button {
+    margin: 3px 3px 0 0;
+    width: 100%;
+    height: 25px;
+    border: none;
+    background-color: #666;
+    color: #fff;
+
+}
+.pe-top button:hover,
+.pe-left button:hover {
+    background-color: #777;
+}
+
+.pe-right {
+    width: 50%;
+    height: 100%;
+}
