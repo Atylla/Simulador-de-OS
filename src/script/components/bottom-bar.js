@@ -1,5 +1,6 @@
 import { openFolderWindow } from "../folders/geralFolders.js";
 import { getZIndex } from "../utils/window-state.js";
+import { renderApps } from "./renderApps.js";
 
 export const compBar = async () => {
     const res = await fetch('/src/components/bottom-bar.html');
@@ -15,6 +16,7 @@ export const compBar = async () => {
         volumeBar();
         btnEimus();
         btnArquivos();
+        renderApps();
     });
 
 }

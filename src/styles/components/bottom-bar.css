@@ -248,6 +248,7 @@
     border-right: 1px solid #222;
     height: 270px;
 }
+.pe-right button,
 .pe-left button {
     margin: 3px 3px 0 0;
     width: 100%;
@@ -257,6 +258,7 @@
     color: #fff;
 
 }
+.pe-right button:hover,
 .pe-top button:hover,
 .pe-left button:hover {
     background-color: #777;
