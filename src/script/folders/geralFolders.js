@@ -124,19 +124,50 @@ export const openAppWindow = (name, url) => {
     </div>
   `;
 
-  const iframe = document.createElement('iframe');
-  iframe.src = url;
-  iframe.classList.add('app-iframe');
-  iframe.style.width = '100%';
-  iframe.style.height = '100%';
-  iframe.style.border = 'none';
+  const contentArea = document.createElement('div');
+  contentArea.classList.add('window-content');
+  contentArea.style.width = '100%';
+  contentArea.style.height = '100%';
+  contentArea.style.overflow = 'auto';
 
   windowEl.appendChild(loadingScreen);
-  windowEl.appendChild(iframe);
+  windowEl.appendChild(contentArea);
 
-  iframe.addEventListener('load', () => {
+  if (typeof url === 'string' && (url.startsWith('http') || url.endsWith('.html'))) {
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.classList.add('app-iframe');
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+
+    windowEl.appendChild(loadingScreen);
+    windowEl.appendChild(iframe);
+
+    iframe.addEventListener('load', () => {
+      loadingScreen.remove();
+    });
+
+    contentArea.appendChild(iframe);
+  } else {
+    if (typeof url === 'function') {
+      const result = url(); // Ex: retorna um elemento ou string
+      if (typeof result === 'string') {
+        contentArea.innerHTML = result;
+      } else if (result instanceof HTMLElement) {
+        contentArea.appendChild(result);
+      }
+    } else if (typeof url === 'string') {
+      // Se for string comum, assume como HTML direto
+      contentArea.innerHTML = url;
+    } else if (url instanceof HTMLElement) {
+      contentArea.appendChild(url);
+    }
+
     loadingScreen.remove();
-  });
+  }
+
+  
 
   // Botão de fechar (já existia)
   windowEl.querySelector('.btn-close').addEventListener('click', () => {

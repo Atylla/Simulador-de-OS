@@ -49,6 +49,7 @@ const criarBotoes = (lista, container) => {
     lista.forEach(name => {
         const btn = document.createElement('button');
         btn.setAttribute('data-eimi', name); //mudar valor
+        btn.classList.add('bottomApp');
         btn.innerText = name;
         container.appendChild(btn);
     })

@@ -1,4 +1,5 @@
-import { openFolderWindow } from "../folders/geralFolders.js";
+import { openAppWindow, openFolderWindow } from "../folders/geralFolders.js";
+import { openApp } from "../utils/open-app.js";
 import { getZIndex } from "../utils/window-state.js";
 import { renderApps } from "./renderApps.js";
 
@@ -17,8 +18,19 @@ export const compBar = async () => {
         btnEimus();
         btnArquivos();
         renderApps();
+        clickBotao();
     });
+}
 
+const clickBotao = () => {
+    document.querySelector('#bottom-bar').addEventListener('click', (element) => {
+        const target = element.target.closest('button[data-eimi]');
+        if (!target) return;
+
+        const data = target.getAttribute('data-eimi');
+        const url = `src/pages/apps/${data}.html`;
+        openAppWindow(data, url);
+    })
 }
 
 const nowHours = () => {
