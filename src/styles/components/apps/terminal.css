@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+
+}
+
+.container-wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-bottom: 50px;
+    background-color: #000;
+    color: #00dd00;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    gap: 20px;
+}
