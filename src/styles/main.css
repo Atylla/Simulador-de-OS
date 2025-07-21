@@ -5,7 +5,6 @@
 @import '/src/styles/components/left-bar.css';
 @import '/src/styles/components/apps.css';
 @import '/src/styles/components/loading.css';
-@import '/src/styles/components/apps/calc.css';
 
 html,
 body {
