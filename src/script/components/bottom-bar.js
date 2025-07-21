@@ -1,4 +1,5 @@
 import { openAppWindow, openFolderWindow } from "../folders/geralFolders.js";
+import { renderCalc } from "../system/apps/calc.js";
 import { openApp } from "../utils/open-app.js";
 import { getZIndex } from "../utils/window-state.js";
 import { renderApps } from "./renderApps.js";
@@ -19,6 +20,7 @@ export const compBar = async () => {
         btnArquivos();
         renderApps();
         clickBotao();
+        
     });
 }
 

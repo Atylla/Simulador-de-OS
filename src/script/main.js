@@ -6,6 +6,7 @@ import { initDesktopDrag, positionInitialApps } from "./utils/drag-drop-app.js";
 import { openApp } from "./utils/open-app.js";
 import { loadingScreenEimi } from "./components/loading-eimi.js";
 
+
 window.addEventListener('load', async () => {
     const loadingEl = loadingScreenEimi();
     document.body.appendChild(loadingEl);
@@ -16,6 +17,7 @@ window.addEventListener('load', async () => {
     await compBar();
     initDesktopDrag();
     positionInitialApps();
+
 
     document.querySelector('#content-wrap').addEventListener('dblclick', (e) => {
         const target = e.target.closest('.app[data-app]');
