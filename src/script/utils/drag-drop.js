@@ -32,7 +32,7 @@ export const dragAndDrop = (windowElement) => {
             const mouseX = e.clientX;
             const mouseY = e.clientY;
 
-            // Recupera dados do dataset (já salvos ANTES da maximização)
+
             const width = parseInt(windowElement.dataset.lastWidth, 10) || 600;
             const height = parseInt(windowElement.dataset.lastHeight, 10) || 400;
 

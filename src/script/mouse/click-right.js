@@ -3,7 +3,7 @@ import { renderDesktop, renderFolderContent, renderLeftSidebar } from "../folder
 import { positionInitialApps } from "../utils/drag-drop-app.js";
 
 let clickedFolderName = null;
-let clickedFolderPath = null; // ← NOVO
+let clickedFolderPath = null; 
 let currentFolderPath = null;
 let currentContentContainer = null;
 let currentSidebarContainer = null;
@@ -24,13 +24,13 @@ export function rightClick() {
             const windowEl = appEl.closest(".draggable-window");
 
             if (fullPath) {
-                clickedFolderPath = fullPath.split("/"); // ← armazena o path completo da pasta clicada
+                clickedFolderPath = fullPath.split("/"); 
             }
 
             if (windowEl) {
                 currentContentContainer = windowEl.querySelector(".folder-content");
                 currentSidebarContainer = windowEl.querySelector(".folder-list");
-                currentFolderPath = windowEl.getCurrentPath?.(); // ← caminho da pasta que está aberta
+                currentFolderPath = windowEl.getCurrentPath?.(); 
             }
 
             deleteOption.style.display = "block";
@@ -63,13 +63,13 @@ export function rightClick() {
         contextMenu.style.display = "none";
     });
 
-    // **Aqui que rola o delete!**
+
     deleteOption.addEventListener("click", () => {
         if (clickedFolderName && clickedFolderPath) {
             const confirmDelete = confirm(`Deseja excluir a pasta "${clickedFolderName}"?`);
             if (confirmDelete) {
                 const parentPath = [...clickedFolderPath];
-                parentPath.pop(); // pega o pai da pasta clicada
+                parentPath.pop(); 
 
                 deleteFolder(parentPath, clickedFolderName);
 

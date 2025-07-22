@@ -24,4 +24,27 @@ body {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
     gap: 20px;
+    white-space: pre;
+}
+
+.pisca {
+    display: inline-block;
+    height: 1em;
+    width: 4px;
+    background-color: #00dd00;
+    margin-left: 2px;
+    animation: pisca 0.7s step-start infinite;
+    vertical-align: bottom;
+}
+
+@keyframes pisca {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

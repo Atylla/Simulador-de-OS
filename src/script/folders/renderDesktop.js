@@ -44,7 +44,6 @@ export const renderDesktop = () => {
       label.textContent = item.name;
       icon.appendChild(label);
 
-      // Clicou na pasta? Abre a janela
       icon.addEventListener("dblclick", () => {
         openFolderWindow(["Área de Trabalho", item.name]);
       });
@@ -90,7 +89,7 @@ export const renderFolderContent = (pathArray, container, onNavigate) => {
       icon.classList.add("folder", "app");
       icon.setAttribute("data-folder-path", [...pathArray, name].join("/"));
 
-      icon.style.position = "static"; // Garante que não fica absolute
+      icon.style.position = "static"; 
       icon.style.left = "";
       icon.style.top = "";
       icon.style.zIndex = "";

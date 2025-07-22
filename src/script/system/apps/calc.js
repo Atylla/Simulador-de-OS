@@ -20,7 +20,9 @@ export const renderCalc = () => {
     btnCaract.forEach( c => {
         c.addEventListener('click', () => {
             const caract = c.getAttribute('data-caract');
-
+            // TODO: utilizar apenas um botao para parenteses e
+            // uma flag para dizer se todos os parenteses foram fechados,
+            // caso haja algum aberto 
             if( caract === '=') {
                 try {
                     const expressao = valorAtual
@@ -30,7 +32,7 @@ export const renderCalc = () => {
                     const result = eval(expressao);
                     valorAtual = result.toString();
                     painel.innerHTML = valorAtual;
-                } catch (e) {
+                } catch (err) {
                     painel.innerHTML = 'erro';
                     valorAtual = '';
                 }
@@ -42,7 +44,10 @@ export const renderCalc = () => {
             } else if ( caract === '%') {
                 painel.innerHTML = 'Operação ainda não implementada'
                 return;
-            }
+            } else if ( caract === 'CA') {
+                painel.innerHTML = '';
+                return;
+            } else if ( caract === '')
 
             valorAtual += caract;
 

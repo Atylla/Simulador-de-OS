@@ -24,7 +24,6 @@ export const winControl = (win) => {
     const isMaximized = win.classList.contains('maximized');
 
     if (!isMaximized) {
-        // SALVA antes de maximizar
         win.dataset.lastWidth = win.offsetWidth;
         win.dataset.lastHeight = win.offsetHeight;
         win.dataset.lastLeft = win.offsetLeft;

@@ -151,14 +151,13 @@ export const openAppWindow = (name, url) => {
     contentArea.appendChild(iframe);
   } else {
     if (typeof url === 'function') {
-      const result = url(); // Ex: retorna um elemento ou string
+      const result = url(); 
       if (typeof result === 'string') {
         contentArea.innerHTML = result;
       } else if (result instanceof HTMLElement) {
         contentArea.appendChild(result);
       }
     } else if (typeof url === 'string') {
-      // Se for string comum, assume como HTML direto
       contentArea.innerHTML = url;
     } else if (url instanceof HTMLElement) {
       contentArea.appendChild(url);
@@ -167,9 +166,6 @@ export const openAppWindow = (name, url) => {
     loadingScreen.remove();
   }
 
-  
-
-  // Botão de fechar (já existia)
   windowEl.querySelector('.btn-close').addEventListener('click', () => {
     windowEl.remove();
   });

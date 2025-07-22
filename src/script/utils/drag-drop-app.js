@@ -8,9 +8,9 @@ export const initDesktopDrag = () => {
   let originalLeft = 0;
   let originalTop = 0;
 
-  // Adiciona event listener mousedown para cada ícone
+
   container.querySelectorAll('.app').forEach(icon => {
-    icon.style.position = 'absolute'; // importante para mover
+    icon.style.position = 'absolute'; 
     icon.style.cursor = 'grab';
 
     icon.addEventListener('mousedown', (e) => {
@@ -27,7 +27,6 @@ export const initDesktopDrag = () => {
     });
   });
 
-  // Escuta mousemove globalmente
   document.addEventListener('mousemove', (e) => {
     if (!draggedIcon) return;
 
@@ -38,7 +37,7 @@ export const initDesktopDrag = () => {
     draggedIcon.style.top = `${y}px`;
   });
 
-  // Escuta mouseup globalmente para soltar o drag
+
   document.addEventListener('mouseup', () => {
     if (!draggedIcon) return;
 
@@ -64,7 +63,6 @@ export const initDesktopDrag = () => {
     const finalLeft = Math.min(Math.max(snappedLeft, gridPadding), maxLeft);
     const finalTop = Math.min(Math.max(snappedTop, gridPadding), maxTop);
 
-    // Verifica colisão com outros ícones
     let occupied = false;
     container.querySelectorAll('.app').forEach(other => {
       if (other === icon) return;

@@ -24,7 +24,7 @@ export const openApp = async (data) => {
         const page = document.querySelector('#content-wrap');
         page.appendChild(win);
 
-        winControl(win); // chama só para a nova janela
+        winControl(win); 
 
     } catch (err) {
         console.error('Erro ao abrir app:', err);
